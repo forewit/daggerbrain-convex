@@ -2,7 +2,7 @@
 	import { useQuery } from 'convex-svelte';
 	import { api } from '@convex/_generated/api.js';
 
-	const query = useQuery(api.tasks.get, {});
+	const query = useQuery(api.characters.list, {});
 </script>
 
 {#if query.isLoading}
@@ -11,11 +11,9 @@
 	failed to load: {query.error.toString()}
 {:else}
 	<ul>
-		{#each query.data as task}
+		{#each query.data as character}
 			<li>
-				{task.isCompleted ? '☑' : '☐'}
-				<span>{task.text}</span>
-				<span>assigned by {task.assigner}</span>
+				<span>{character.name}</span>
 				<input />
 			</li>
 		{/each}

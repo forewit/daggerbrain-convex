@@ -8,8 +8,8 @@
  * @module
  */
 
-import type * as schemas from "../schemas.js";
-import type * as tasks from "../characters.js";
+import type * as auth from "../auth.js";
+import type * as characters from "../characters.js";
 
 import type {
   ApiFromModules,
@@ -18,8 +18,8 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
-  schemas: typeof schemas;
-  tasks: typeof tasks;
+  auth: typeof auth;
+  characters: typeof characters;
 }>;
 
 /**
