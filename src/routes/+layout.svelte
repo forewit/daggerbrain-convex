@@ -1,23 +1,15 @@
 <script lang="ts">
-	import { PUBLIC_CONVEX_URL } from '$env/static/public';
-	import { setupConvex, useConvexClient } from 'convex-svelte';
-	import { ClerkProvider, useClerkContext } from 'svelte-clerk';
+  import { ClerkProvider } from "svelte-clerk";
+  import { setupConvex, useConvexClient } from "convex-svelte";
+  import { PUBLIC_CONVEX_URL } from "$env/static/public";
 
-	const { children } = $props();
-	setupConvex(PUBLIC_CONVEX_URL);
+  // Props
+  const { data, children } = $props();
 
-	const convexClient = useConvexClient();
-	const clerk = useClerkContext();
-
-	$effect(() => {
-		if (!clerk.isLoaded) {
-			return;
-		}
-
-		convexClient.setAuth(async () => {
-			return (await clerk.session?.getToken({ template: 'convex' })) ?? null;
-		});
-	});
+  // Convex
+  setupConvex(PUBLIC_CONVEX_URL);
+  const convexClient = useConvexClient();
+  convexClient.setAuth(async () => data.token);
 </script>
 
 <ClerkProvider>
