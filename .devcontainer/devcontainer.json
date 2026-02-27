@@ -1,0 +1,5 @@
+{
+  "name": "Bun",
+  "postCreateCommand": "npm install -g bun && bun --version",
+  "remoteUser": "codespace"
+}
